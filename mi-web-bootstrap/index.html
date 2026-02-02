@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Casa Ronroneo · Adopta un Gatito</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fff7fb;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --brand: #ff6fae;
+      --brand2: #7c5cff;
+      --card: #ffffff;
+      --dark: #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); }
+
+    .bg-soft {
+      background:
+        radial-gradient(900px 400px at 10% 5%, rgba(255,111,174,.18), transparent 60%),
+        radial-gradient(700px 350px at 85% 10%, rgba(124,92,255,.16), transparent 55%),
+        radial-gradient(600px 350px at 30% 90%, rgba(255,210,133,.18), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    }
+
+    .rounded-24 { border-radius: 24px; }
+    .soft-shadow { box-shadow: 0 14px 40px rgba(17,24,39,.10); }
+    .muted { color: var(--muted); }
+    section { padding: 80px 0; }
+
+    .navbar { backdrop-filter: blur(10px); }
+
+    .btn-brand {
+      background: linear-gradient(135deg, var(--brand), #ff93c4);
+      border: 0;
+      color: #fff;
+    }
+    .btn-brand:hover { opacity: .95; color: #fff; }
+    .btn-ghost {
+      border: 1px solid rgba(17,24,39,.15);
+      background: rgba(255,255,255,.65);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(17,24,39,.08);
+    }
+
+    /* Carrusel */
+    .carousel-item img{
+      height: clamp(280px, 46vw, 560px);
+      width: 100%;
+      object-fit: cover;
+      filter: saturate(1.05);
+    }
+    .carousel-caption{ text-shadow: 0 10px 30px rgba(0,0,0,.45); }
+
+    .lift { transition: transform .18s ease, box-shadow .18s ease; }
+    .lift:hover{ transform: translateY(-4px); box-shadow: 0 18px 50px rgba(17,24,39,.14); }
+
+    .chip{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.5rem .75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(17,24,39,.08);
+      font-size: .95rem;
+    }
+
+    .kitty-cover{
+      height: 150px;
+      border-radius: 18px;
+      background:
+        radial-gradient(220px 90px at 20% 20%, rgba(255,111,174,.35), transparent 60%),
+        radial-gradient(220px 90px at 85% 30%, rgba(124,92,255,.28), transparent 60%),
+        linear-gradient(135deg, #fff 0%, #fff3f9 70%);
+      border: 1px solid rgba(17,24,39,.08);
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      padding: 14px 14px;
+      overflow:hidden;
+    }
+    .kitty-emoji{ font-size: 2.1rem; }
+    .tag{
+      font-size:.85rem;
+      padding:.25rem .6rem;
+      border-radius:999px;
+      background: rgba(17,24,39,.08);
+    }
+
+    .accordion-button:focus { box-shadow: none; }
+
+    #toTop{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1040;
+      display: none;
+    }
+
+    footer a { color: rgba(255,255,255,.85); text-decoration: none; }
+    footer a:hover { color: #fff; text-decoration: underline; }
+  </style>
+</head>
+
+<body class="bg-soft">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#inicio">
+        <i class="bi bi-heart-fill me-2" style="color: var(--brand)"></i>Casa Ronroneo
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+        aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#beneficios">Beneficios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gatitos">Gatitos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#adopcion">Cómo adoptar</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">Preguntas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-brand btn-sm px-3 rounded-pill" href="#contacto">
+              <i class="bi bi-paw-fill me-1"></i>Quiero adoptar
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="chip mb-3">
+            <i class="bi bi-stars"></i>
+            <span>Adopción responsable · Gatitos rescatados</span>
+          </div>
+
+          <h1 class="display-5 fw-bold mb-3">
+            Adopta un gatito tierno 🐾 <br class="d-none d-lg-block" />
+            y llena tu casa de ronroneos
+          </h1>
+
+          <p class="lead muted mb-4">
+            En <strong>Casa Ronroneo</strong> conectamos gatitos rescatados con familias cariñosas.
+            Adoptar es abrirle la puerta a un compañero adorable y darle una segunda oportunidad.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-brand btn-lg rounded-pill px-4" href="#gatitos">
+              <i class="bi bi-search-heart me-2"></i>Ver gatitos disponibles
+            </a>
+            <a class="btn btn-ghost btn-lg rounded-pill px-4" href="#adopcion">
+              <i class="bi bi-list-check me-2"></i>Cómo funciona
+            </a>
+          </div>
+
+          <div class="row g-3 mt-4">
+            <div class="col-sm-4">
+              <div class="p-3 hero-card rounded-24 soft-shadow">
+                <div class="fw-bold fs-4">+120</div>
+                <div class="muted">adopciones realizadas</div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="p-3 hero-card rounded-24 soft-shadow">
+                <div class="fw-bold fs-4">48 h</div>
+                <div class="muted">respuesta promedio</div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="p-3 hero-card rounded-24 soft-shadow">
+                <div class="fw-bold fs-4">Guía</div>
+                <div class="muted">de adaptación</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="p-4 bg-white rounded-24 soft-shadow lift">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="h5 fw-semibold mb-0">Lista de inicio</h2>
+              <span class="badge text-bg-dark rounded-pill">Básico</span>
+            </div>
+            <ul class="mb-0 muted">
+              <li>Transportadora + mantita suave</li>
+              <li>Platos para comida + agua fresca</li>
+              <li>Arenero + arena</li>
+              <li>Rascador y juguetes (plumas, pelotas)</li>
+              <li>Un espacio tranquilo para adaptarse</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BENEFICIOS -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Beneficios de adoptar</h2>
+          <p class="muted mb-0">Razones bonitas y prácticas para sumar un minino a tu hogar.</p>
+        </div>
+        <span class="chip"><i class="bi bi-emoji-smile"></i> Ternura todos los días</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="fs-2 mb-2"><i class="bi bi-chat-heart-fill" style="color: var(--brand)"></i></div>
+              <h3 class="h5 fw-semibold">Compañía</h3>
+              <p class="muted mb-0">Un gatito te acompaña en la rutina con calma, curiosidad y cariño.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="fs-2 mb-2"><i class="bi bi-house-heart-fill" style="color: var(--brand2)"></i></div>
+              <h3 class="h5 fw-semibold">Segunda oportunidad</h3>
+              <p class="muted mb-0">Adoptar significa darle hogar a un rescatado que lo necesita.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="fs-2 mb-2"><i class="bi bi-stars" style="color: #ffb020"></i></div>
+              <h3 class="h5 fw-semibold">Alegría cotidiana</h3>
+              <p class="muted mb-0">Siestas al sol, patitas curiosas y momentos que te sacan una sonrisa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="fs-2 mb-2"><i class="bi bi-shield-check" style="color: #22c55e"></i></div>
+              <h3 class="h5 fw-semibold">Acompañamiento</h3>
+              <p class="muted mb-0">Te orientamos con una guía de adaptación y recomendaciones básicas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRUSEL -->
+  <section id="galeria" class="bg-white">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-3">
+        <div>
+          <h2 class="fw-bold mb-1">Galería de ternura</h2>
+          <p class="muted mb-0">Desliza y conoce a los protagonistas.</p>
+        </div>
+        <span class="badge text-bg-dark rounded-pill">Carrusel</span>
+      </div>
+
+      <div id="carruselGatitos" class="carousel slide rounded-24 overflow-hidden soft-shadow" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carruselGatitos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carruselGatitos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carruselGatitos" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3500">
+            <img
+              src="assets/img/slide1.png"
+              data-srcs="assets/img/slide1.jpg.png|img/slide1.jpg.png|../assets/img/slide1.jpg.png"
+              class="d-block w-100"
+              alt="Gatito tierno en canastita"
+              onerror="tryNextSrc(this)"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="fw-semibold">“¿Me llevas a casa?”</h5>
+              <p>Una bolita de amor lista para encontrar familia.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item" data-bs-interval="3500">
+            <img
+              src="assets/img/slide2.png"
+              data-srcs="assets/img/slide2.jpg.png|img/slide2.jpg.png|../assets/img/slide2.jpg.png"
+              class="d-block w-100"
+              alt="Gatitos celebrando"
+              onerror="tryNextSrc(this)"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="fw-semibold">Doble ternura</h5>
+              <p>Porque a veces el hogar se llena de alegría por partida doble.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item" data-bs-interval="3500">
+            <img
+              src="assets/img/slide3.png"
+              data-srcs="assets/img/slide3.jpg.png|img/slide3.jpg.png|../assets/img/slide3.jpg.png"
+              class="d-block w-100"
+              alt="Gatito con lentes"
+              onerror="tryNextSrc(this)"
+            >
+            <div class="carousel-caption d-none d-md-block">
+              <h5 class="fw-semibold">Personalidad al máximo</h5>
+              <p>Cada gatito tiene su estilo y su forma de amar.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselGatitos" data-bs-slide="prev" aria-label="Anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselGatitos" data-bs-slide="next" aria-label="Siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GATITOS -->
+  <section id="gatitos">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Gatitos disponibles</h2>
+          <p class="muted mb-0">Conoce a algunos de los que buscan un hogar.</p>
+        </div>
+        <span class="chip"><i class="bi bi-patch-check-fill" style="color:#22c55e"></i> Listos para conocer</span>
+      </div>
+
+      <div class="row g-4">
+        <!-- 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Nube</div>
+                  <div class="small muted">3 meses · se adapta con calma</div>
+                </div>
+                <div class="kitty-emoji">🐱</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Cariñosa</span><span class="tag">Curiosa</span><span class="tag">Interior</span>
+              </div>
+              <p class="muted mb-3">Le encantan las mantitas. Cuando toma confianza, ronronea sin parar.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Nube","age":"3 meses","vibe":"Al inicio reservada, luego muy mimosa","likes":"Mantitas, siestas, juegos suaves","home":"Hogar tranquilo y paciente","note":"Perfecta si te gusta la adaptación paso a paso."}'>
+                Conocer a Nube
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Chispa</div>
+                  <div class="small muted">5 meses · energía feliz</div>
+                </div>
+                <div class="kitty-emoji">😺</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Juguetón</span><span class="tag">Sociable</span><span class="tag">Valiente</span>
+              </div>
+              <p class="muted mb-3">Corre detrás de plumas y “saluda” cuando llegas. Es puro entusiasmo.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Chispa","age":"5 meses","vibe":"Muy sociable y divertido","likes":"Plumas, pelotas, explorar","home":"Familia con ratitos de juego diarios","note":"Ideal si quieres un compañero activo."}'>
+                Conocer a Chispa
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Mochi</div>
+                  <div class="small muted">1 año · tranquilo</div>
+                </div>
+                <div class="kitty-emoji">🐾</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Sereno</span><span class="tag">Mimos</span><span class="tag">Siestas</span>
+              </div>
+              <p class="muted mb-3">Ama las ventanas soleadas. Te acompaña sin interrumpir tu día.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Mochi","age":"1 año","vibe":"Tranquilo y muy constante","likes":"Sol, cepillado suave, observar","home":"Departamento o casa con rinconcitos cómodos","note":"Gran opción si buscas calma y compañía."}'>
+                Conocer a Mochi
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Canela</div>
+                  <div class="small muted">8 meses · curiosa</div>
+                </div>
+                <div class="kitty-emoji">🐈</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Lista</span><span class="tag">Curiosa</span><span class="tag">Juguetes</span>
+              </div>
+              <p class="muted mb-3">Si hay una caja, Canela ya se instaló. Aprende rutinas rapidísimo.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Canela","age":"8 meses","vibe":"Curiosa e inteligente","likes":"Cajas, túneles, rascador","home":"Hogar con rascador y juguetes","note":"Se adapta muy bien a visitas y cambios."}'>
+                Conocer a Canela
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Bigotes</div>
+                  <div class="small muted">2 años · equilibrado</div>
+                </div>
+                <div class="kitty-emoji">😸</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Amistoso</span><span class="tag">Tranquilo</span><span class="tag">Cercano</span>
+              </div>
+              <p class="muted mb-3">Siempre anda cerca. Es sociable sin ser intenso: compañía perfecta.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Bigotes","age":"2 años","vibe":"Sociable y muy estable","likes":"Caricias, mirar por la ventana","home":"Hogar con tiempo para convivir","note":"Ideal para un ambiente familiar."}'>
+                Conocer a Bigotes
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 rounded-24 soft-shadow lift">
+            <div class="card-body">
+              <div class="kitty-cover mb-3">
+                <div>
+                  <div class="fw-semibold">Luna</div>
+                  <div class="small muted">10 meses · súper cariñosa</div>
+                </div>
+                <div class="kitty-emoji">🌙</div>
+              </div>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="tag">Mimosa</span><span class="tag">Dulce</span><span class="tag">Apegada</span>
+              </div>
+              <p class="muted mb-3">Si te sientas, llega. Si te paras, te acompaña. Así de simple.</p>
+              <button class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#kittyModal"
+                data-kitty='{"name":"Luna","age":"10 meses","vibe":"Muy cariñosa y pegadita","likes":"Regazo, mantas, compañía","home":"Hogar donde le den cariño y tiempo","note":"Excelente si buscas una gata muy cercana."}'>
+                Conocer a Luna
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-4 bg-white rounded-24 soft-shadow">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-8">
+            <h3 class="h5 fw-semibold mb-1">¿No sabes cuál elegir?</h3>
+            <p class="muted mb-0">Cuéntanos tu rutina y te ayudamos a encontrar el mejor match.</p>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <a class="btn btn-brand rounded-pill px-4" href="#contacto">
+              <i class="bi bi-send-heart me-2"></i>Ayúdenme a elegir
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO ADOPTAR -->
+  <section id="adopcion" class="bg-white">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Cómo adoptar</h2>
+          <p class="muted mb-0">Un proceso simple y pensado para el bienestar del gatito.</p>
+        </div>
+        <span class="chip"><i class="bi bi-list-check"></i> 5 pasos</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="p-4 rounded-24 soft-shadow bg-white">
+            <div class="d-flex gap-3 mb-3">
+              <div class="fs-3"><i class="bi bi-1-circle-fill" style="color: var(--brand)"></i></div>
+              <div><div class="fw-semibold">Elige a tu gatito</div><div class="muted">Revisa perfiles y guarda tus favoritos.</div></div>
+            </div>
+            <div class="d-flex gap-3 mb-3">
+              <div class="fs-3"><i class="bi bi-2-circle-fill" style="color: var(--brand)"></i></div>
+              <div><div class="fw-semibold">Completa el formulario</div><div class="muted">Cuéntanos tu rutina y tu hogar.</div></div>
+            </div>
+            <div class="d-flex gap-3 mb-3">
+              <div class="fs-3"><i class="bi bi-3-circle-fill" style="color: var(--brand)"></i></div>
+              <div><div class="fw-semibold">Plática breve</div><div class="muted">Resolvemos dudas y elegimos el mejor match.</div></div>
+            </div>
+            <div class="d-flex gap-3 mb-3">
+              <div class="fs-3"><i class="bi bi-4-circle-fill" style="color: var(--brand)"></i></div>
+              <div><div class="fw-semibold">Encuentro</div><div class="muted">Conoces al gatito y vemos compatibilidad.</div></div>
+            </div>
+            <div class="d-flex gap-3">
+              <div class="fs-3"><i class="bi bi-5-circle-fill" style="color: var(--brand)"></i></div>
+              <div><div class="fw-semibold">Adopción y bienvenida</div><div class="muted">Te compartimos una guía de adaptación y cuidados básicos.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="p-4 bg-dark text-white rounded-24 soft-shadow">
+            <h3 class="h5 fw-semibold">Tip importante</h3>
+            <p class="mb-3">
+              Los primeros días conviene ir con calma: un espacio seguro, rutinas suaves y mucho respeto.
+              La confianza llega… y después no se despegan. 🐾
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge rounded-pill text-bg-light text-dark"><i class="bi bi-house-door me-1"></i> Espacio seguro</span>
+              <span class="badge rounded-pill text-bg-light text-dark"><i class="bi bi-clock me-1"></i> Paciencia</span>
+              <span class="badge rounded-pill text-bg-light text-dark"><i class="bi bi-balloon-heart me-1"></i> Cariño</span>
+            </div>
+            <hr class="border-white border-opacity-25 my-4">
+            <a class="btn btn-brand rounded-pill px-4" href="#contacto">
+              <i class="bi bi-paw-fill me-2"></i>Empezar adopción
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Historias felices</h2>
+          <p class="muted mb-0">Personas que abrieron su hogar… y su corazón.</p>
+        </div>
+        <span class="chip"><i class="bi bi-heart-fill" style="color: var(--brand)"></i> Adopciones</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 bg-white rounded-24 soft-shadow lift h-100">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-quote fs-3" style="color: var(--brand)"></i>
+              <span class="fw-semibold">Carla · Guadalajara</span>
+            </div>
+            <p class="muted mb-0">“Adoptamos a Mochi y la casa se siente más tranquila. Siempre se acurruca cerca cuando trabajamos.”</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 bg-white rounded-24 soft-shadow lift h-100">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-quote fs-3" style="color: var(--brand2)"></i>
+              <span class="fw-semibold">Andrés · Bogotá</span>
+            </div>
+            <p class="muted mb-0">“Chispa nos hace reír diario. Jugar un rato con él se volvió nuestro momento favorito.”</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="p-4 bg-white rounded-24 soft-shadow lift h-100">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-quote fs-3" style="color: #ffb020"></i>
+              <span class="fw-semibold">Valentina · Lima</span>
+            </div>
+            <p class="muted mb-0">“Nube tardó unos días en confiar… y ahora pide cariño con la patita. Fue una gran decisión.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="bg-white">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Preguntas frecuentes</h2>
+          <p class="muted mb-0">Respuestas claras para que adoptes con tranquilidad.</p>
+        </div>
+        <span class="chip"><i class="bi bi-patch-question"></i> FAQ</span>
+      </div>
+
+      <div class="accordion soft-shadow rounded-24 overflow-hidden" id="faqAcc">
+        <div class="accordion-item border-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">
+              ¿Puedo adoptar si vivo en un departamento?
+            </button>
+          </h2>
+          <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+            <div class="accordion-body muted">
+              Sí. Lo importante es ofrecer un espacio seguro, arenero limpio, rascador y juguetes.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">
+              ¿Qué necesito al inicio?
+            </button>
+          </h2>
+          <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body muted">
+              Platos para comida y agua, arenero, arena, rascador, transportadora y una mantita para su rincón.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">
+              ¿Y si ya tengo otra mascota?
+            </button>
+          </h2>
+          <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body muted">
+              Se recomienda presentación gradual: al inicio, espacios separados y rutinas tranquilas.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
+              ¿Cuánto tarda la adaptación?
+            </button>
+          </h2>
+          <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+            <div class="accordion-body muted">
+              Depende del gatito. Algunos se sueltan rápido, otros requieren más calma. Lo importante es respetar su ritmo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2 mb-4">
+        <div>
+          <h2 class="fw-bold mb-1">Contacto · Empezar adopción</h2>
+          <p class="muted mb-0">Completa el formulario y te contactamos pronto.</p>
+        </div>
+        <span class="chip"><i class="bi bi-send"></i> Formulario</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="p-4 bg-white rounded-24 soft-shadow">
+            <form id="adoptionForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="name">Nombre</label>
+                  <input class="form-control" id="name" required placeholder="Tu nombre">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="email">Email</label>
+                  <input class="form-control" id="email" type="email" required placeholder="tu@email.com">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="city">Ciudad</label>
+                  <input class="form-control" id="city" required placeholder="Ej.: Monterrey">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="kitty">Gatito que te interesa</label>
+                  <select class="form-select" id="kitty" required>
+                    <option value="" selected disabled>Elige uno</option>
+                    <option>Nube</option>
+                    <option>Chispa</option>
+                    <option>Mochi</option>
+                    <option>Canela</option>
+                    <option>Bigotes</option>
+                    <option>Luna</option>
+                    <option>No estoy seguro/a</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="msg">Cuéntanos tu rutina</label>
+                  <textarea class="form-control" id="msg" rows="4" required
+                    placeholder="¿Tienes otras mascotas? ¿Cuánto tiempo pasas en casa?"></textarea>
+                </div>
+                <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
+                  <button class="btn btn-brand rounded-pill px-4" type="submit">
+                    <i class="bi bi-heart-pulse me-2"></i>Enviar solicitud
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="p-4 bg-dark text-white rounded-24 soft-shadow h-100">
+            <h3 class="h5 fw-semibold">Casa Ronroneo</h3>
+            <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Calle Gatuna 12, Col. Centro, CDMX</p>
+            <p class="mb-2"><i class="bi bi-clock me-2"></i>Lun–Vie: 10:00–18:00 · Sáb: 10:00–14:00</p>
+            <p class="mb-3"><i class="bi bi-envelope-heart me-2"></i>adopciones@casaronroneo.org</p>
+
+            <div class="d-flex gap-2">
+              <a class="btn btn-outline-light rounded-pill" href="#galeria"><i class="bi bi-images me-1"></i>Ver fotos</a>
+              <a class="btn btn-outline-light rounded-pill" href="#gatitos"><i class="bi bi-paw me-1"></i>Ver gatitos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark text-white">
+    <div class="container py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <div class="fw-semibold">
+            <i class="bi bi-heart-fill me-2" style="color: var(--brand)"></i>Casa Ronroneo
+          </div>
+          <div class="small text-white-50">Adoptar es amor con bigotes · © <span id="year"></span></div>
+        </div>
+
+        <div class="col-md-6 text-center text-md-end">
+          <a class="me-3" href="#beneficios">Beneficios</a>
+          <a class="me-3" href="#adopcion">Adopción</a>
+          <a class="me-3" href="#faq">Preguntas</a>
+          <a href="#contacto">Contacto</a>
+          <div class="mt-2">
+            <a class="me-2" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="me-2" href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón volver arriba -->
+  <button id="toTop" class="btn btn-dark rounded-pill px-3">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Modal Gatitos -->
+  <div class="modal fade" id="kittyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-24 overflow-hidden">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title fw-semibold" id="kittyModalTitle">Conocer gatito</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-1"><strong>Edad:</strong> <span id="mAge"></span></p>
+          <p class="mb-1"><strong>Carácter:</strong> <span id="mVibe"></span></p>
+          <p class="mb-1"><strong>Le gusta:</strong> <span id="mLikes"></span></p>
+          <p class="mb-1"><strong>Hogar ideal:</strong> <span id="mHome"></span></p>
+          <p class="mb-0"><strong>Nota:</strong> <span id="mNote"></span></p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-brand rounded-pill px-4" href="#contacto" data-bs-dismiss="modal">
+            <i class="bi bi-heart-fill me-2"></i>Quiero adoptar
+          </a>
+          <button type="button" class="btn btn-outline-dark rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+    <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="bi bi-check-circle me-2" style="color:#22c55e"></i>
+          ¡Listo! Recibimos tu solicitud. 🐾
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Fallback de imágenes (funciona si index.html está en raíz o dentro de /assets)
+    function tryNextSrc(img){
+      const list = (img.dataset.srcs || "").split("|").map(s => s.trim()).filter(Boolean);
+      const i = parseInt(img.dataset.srcIndex || "0", 10);
+
+      if (i >= list.length) return;
+      img.dataset.srcIndex = String(i + 1);
+      img.src = list[i];
+    }
+
+    // Modal dinámico para gatitos
+    const kittyModal = document.getElementById("kittyModal");
+    kittyModal.addEventListener("show.bs.modal", (event) => {
+      const button = event.relatedTarget;
+      const data = JSON.parse(button.getAttribute("data-kitty"));
+
+      document.getElementById("kittyModalTitle").textContent = "Conocer a " + data.name;
+      document.getElementById("mAge").textContent = data.age;
+      document.getElementById("mVibe").textContent = data.vibe;
+      document.getElementById("mLikes").textContent = data.likes;
+      document.getElementById("mHome").textContent = data.home;
+      document.getElementById("mNote").textContent = data.note;
+
+      const select = document.getElementById("kitty");
+      if (select) {
+        for (const opt of select.options) {
+          if (opt.text === data.name) { select.value = data.name; break; }
+        }
+      }
+    });
+
+    // Form: mostrar toast y limpiar
+    const form = document.getElementById("adoptionForm");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const toastEl = document.getElementById("liveToast");
+      const toast = new bootstrap.Toast(toastEl, { delay: 3200 });
+      toast.show();
+      form.reset();
+    });
+
+    // Botón volver arriba
+    const toTop = document.getElementById("toTop");
+    window.addEventListener("scroll", () => {
+      toTop.style.display = window.scrollY > 600 ? "inline-flex" : "none";
+    });
+    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  </script>
+</body>
+</html>
